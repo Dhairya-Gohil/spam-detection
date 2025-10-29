@@ -1,0 +1,171 @@
+/* ---------------- GLOBAL ---------------- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f5f7;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------- MAIN CONTAINER ---------------- */
+.main-container {
+    background: #fff;
+    border-radius: 16px;
+    width: 920px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    padding: 25px 35px 35px 35px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    background-color: #e9ecef;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+}
+
+/* ---------------- CONTENT LAYOUT ---------------- */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* ---------------- LEFT SECTION ---------------- */
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+textarea {
+    width: 100%;
+    height: 130px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    resize: none;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+textarea:focus {
+    border-color: #0078ff;
+    outline: none;
+    box-shadow: 0 0 4px #0078ff55;
+}
+
+.or-text {
+    margin: 15px 0 10px 0;
+    font-weight: 600;
+    text-align: center;
+    color: #555;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    background: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #005fcc;
+}
+
+/* ---------------- RIGHT SECTION ---------------- */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Right side background color based on prediction */
+.right-section.spam {
+    background-color: #ffe6e6;
+}
+
+.right-section.legitimate {
+    background-color: #e6ffe6;
+}
+
+/* Outer results container */
+.results-container {
+    border: 2px solid #333;
+    border-radius: 12px;
+    background: #fafafa;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual result box */
+.result-box {
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+/* Scrollable message box */
+.scroll-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    height: 100px;         /* fixed height */
+    overflow-y: auto;      /* scrollbar */
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* Result box colors */
+.result-message.spam {
+    background-color: #ffd6d6;
+    color: #b50000;
+    border: 1px solid #b50000;
+}
+
+.result-message.legitimate {
+    background-color: #d6ffd6;
+    color: #007b00;
+    border: 1px solid #007b00;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    .main-container {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+/* Empty text box style */
+.scroll-box.empty::before {
+    content: "";
+    display: block;
+    height: 100%;
+}

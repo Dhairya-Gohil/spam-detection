@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spam Detection System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        /* Simple styling for drag/drop box */
+        #drop-area {
+            border: 2px dashed #666;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #drop-area.highlight {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>📩 Spam Detection System</h1>
+
+        <form id="spam-form" action="/predict" method="post" enctype="multipart/form-data">
+            <div class="content">
+
+                <!-- LEFT SIDE -->
+                <div class="left-section">
+                    <textarea name="message" id="message" placeholder="✏️ Write a message here..."></textarea>
+
+                    <p class="or-text">— or —</p>
+
+                    <!-- file box -->
+                    
+                    <button type="submit">🔍 Check Message</button>
+                </div>
+
+                <!-- RIGHT SIDE -->
+                <div class="right-section {{ prediction|lower if prediction }}">
+                    <div class="results-container">
+
+                        <!-- 1️⃣ TEXT MESSAGE BOX -->
+                        <div class="result-box">
+                            <p><b>📜 Text message:</b></p>
+                            {% if message %}
+                                <div class="scroll-box">{{ message }}</div>
+                            {% else %}
+                                <div class="scroll-box empty"></div>
+                            {% endif %}
+                        </div>
+
+                        <!-- 2️⃣ RESULT BOX -->
+                        <div class="result-box result-message {{ prediction|lower if prediction }}">
+                            <p><b>✅ Result : {{ prediction if prediction else '' }}</b></p>
+                        </div>
+
+                        <!-- 3️⃣ CONFIDENCE BOX -->
+                        <div class="result-box">
+                            <p><b>📈 Confidence : {{ confidence if confidence else '' }}</b></p>
+                        </div>
+
+                        {% if error %}
+                        <div class="result-box error">
+                            <p style="color:red;"><b>{{ error }}</b></p>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
